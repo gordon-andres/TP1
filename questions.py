@@ -1,5 +1,9 @@
 import random
 import sys
+
+#Inicializo la nota del jugador
+mark = 0
+
 # Preguntas para el juego
 questions = [
 "¿Qué función se usa para obtener la longitud de una cadena en Python?",
@@ -41,14 +45,19 @@ for _ in range(3):
     # Se verifica si la respuesta es correcta
         if user_answer == correct_answers_index[question_index]:
             print("¡Correcto!")
+            mark = mark + 1
             break
         else:
         # Si el usuario no responde correctamente después de 2 intentos,
         # se muestra la respuesta correcta
             print("Incorrecto. La respuesta correcta es:")
+            mark = mark - 0.5
             print(answers[question_index]
 
 [correct_answers_index[question_index]])
+
+#Imprime la nota
+print("Tu nota es: ",mark)
 
 # Se imprime un blanco al final de la pregunta
 print()
