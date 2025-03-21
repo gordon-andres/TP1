@@ -1,63 +1,62 @@
 import random
 import sys
 
-#Inicializo la nota del jugador
+# Inicializo la nota del jugador
 mark = 0
 
 # Preguntas para el juego
 questions = [
-"¿Qué función se usa para obtener la longitud de una cadena en Python?",
-"¿Cuál de las siguientes opciones es un número entero en Python?",
-"¿Cómo se solicita entrada del usuario en Python?",
-"¿Cuál de las siguientes expresiones es un comentario válido en Python?",
-"¿Cuál es el operador de comparación para verificar si dos valores son iguales?",
+    "¿Qué función se usa para obtener la longitud de una cadena en Python?",
+    "¿Cuál de las siguientes opciones es un número entero en Python?",
+    "¿Cómo se solicita entrada del usuario en Python?",
+    "¿Cuál de las siguientes expresiones es un comentario válido en Python?",
+    "¿Cuál es el operador de comparación para verificar si dos valores son iguales?",
 ]
+
 # Respuestas posibles para cada pregunta, en el mismo orden que las preguntas
 answers = [
-("size()", "len()", "length()", "count()"),
-("3.14", "'42'", "10", "True"),
-("input()", "scan()", "read()", "ask()"),
-(
-"// Esto es un comentario",
-"/* Esto es un comentario */",
-"-- Esto es un comentario",
-"# Esto es un comentario",
-),
-("=", "==", "!=", "==="),
+    ("size()", "len()", "length()", "count()"),
+    ("3.14", "'42'", "10", "True"),
+    ("input()", "scan()", "read()", "ask()"),
+    ("// Esto es un comentario", "/* Esto es un comentario */", "-- Esto es un comentario", "# Esto es un comentario"),
+    ("=", "==", "!=", "==="),
 ]
+
 # Índice de la respuesta correcta para cada pregunta, en el mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
 
+# Combina las preguntas, respuestas y respuestas correctas en una lista de tuplas
+questions_to_ask = list(zip(questions, answers, correct_answers_index))
+
+# Selecciona 3 preguntas aleatorias
+selected_questions = random.choices(questions_to_ask, k=3)
+
 # El usuario deberá contestar 3 preguntas
-for _ in range(3):
-    # Se selecciona una pregunta aleatoria
-    question_index = random.randint(0, len(questions) - 1)
+for question, possible_answers, correct_answer_index in selected_questions:
     # Se muestra la pregunta y las respuestas posibles
-    print(questions[question_index])
-    for i, answer in enumerate(answers[question_index]):
+    print(question)
+    for i, answer in enumerate(possible_answers):
         print(f"{i + 1}. {answer}")
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
         user_answer = int(input("Respuesta: ")) - 1
-        if user_answer + 1 not in [1,2,3,4]:
-            print("¡Respuesta no valida!")
+        if user_answer + 1 not in [1, 2, 3, 4]:
+            print("¡Respuesta no válida!")
             sys.exit(1)
-    # Se verifica si la respuesta es correcta
-        if user_answer == correct_answers_index[question_index]:
+        # Se verifica si la respuesta es correcta
+        if user_answer == correct_answer_index:
             print("¡Correcto!")
-            mark = mark + 1
+            mark += 1
             break
         else:
-        # Si el usuario no responde correctamente después de 2 intentos,
-        # se muestra la respuesta correcta
+            # Si el usuario no responde correctamente después de 2 intentos,
+            # se muestra la respuesta correcta
             print("Incorrecto. La respuesta correcta es:")
-            mark = mark - 0.5
-            print(answers[question_index]
+            mark -= 0.5
+            print(possible_answers[correct_answer_index])
 
-[correct_answers_index[question_index]])
-
-#Imprime la nota
-print("Tu nota es: ",mark)
+# Imprime la nota
+print("Tu nota es:", mark)
 
 # Se imprime un blanco al final de la pregunta
 print()
