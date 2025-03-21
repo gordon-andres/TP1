@@ -28,8 +28,8 @@ correct_answers_index = [1, 2, 0, 3, 1]
 # Combina las preguntas, respuestas y respuestas correctas en una lista de tuplas
 questions_to_ask = list(zip(questions, answers, correct_answers_index))
 
-# Selecciona 3 preguntas aleatorias
-selected_questions = random.choices(questions_to_ask, k=3)
+# Selecciona 3 preguntas únicas
+selected_questions = random.sample(questions_to_ask, k=3)
 
 # El usuario deberá contestar 3 preguntas
 for question, possible_answers, correct_answer_index in selected_questions:
