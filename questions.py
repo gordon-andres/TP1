@@ -22,11 +22,7 @@ answers = [
 ]
 # Índice de la respuesta correcta para cada pregunta, en el mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
-6. 
-7. 
-1. 
-2. 
-3. 
+
 # El usuario deberá contestar 3 preguntas
 for _ in range(3):
     # Se selecciona una pregunta aleatoria
@@ -38,6 +34,8 @@ for _ in range(3):
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
         user_answer = int(input("Respuesta: ")) - 1
+        if user_answer + 1 not in [1,2,3,4]:
+            user_answer = int(input("Ingrese una respuesta del 1 al 4: ")) - 1
     # Se verifica si la respuesta es correcta
         if user_answer == correct_answers_index[question_index]:
             print("¡Correcto!")
